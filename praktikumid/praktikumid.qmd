@@ -1,11 +1,145 @@
 ---
 title: "praktikumid"
+author: "Elise Jalonen"
 ---
 
-## Quarto
+## Praktikum 1
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+Töökataloogi kontrollimine:
 
 ```{r}
-1 + 1
+getwd()
 ```
+
+Töökeskkonna liikmed:
+
+ls() \# kuvatakse töökeskkonna liikmed
+
+rm(objektinimi) \# eemaldatakse nimetatud objekt
+
+str(objektinimi) \# vaatame andmetabeli struktuuri
+
+## Analüüsipaketid
+
+Eespool mainitud R-i laiendused andmeanalüüsi pakettide näol tuleb esmalt paigalda ja käivitada:
+
+install.packages("analüüsipaketi.nimi")
+
+library(analüüsipaketi.nimi)
+
+## Tunnuste loomine
+
+```{r}
+rektorinimed <- c("Jüri Kärner", "Peeter Tulviste", "Jaak Aaviksoo", "Alar Karis", "Volli Kalm", "Toomas Asser")
+
+synd <- c(1940, 1945, 1954, 1958, 1953, 1954)
+
+ametialgus <- c(1988, 1993, 1998, 2007, 2012, 2018)
+
+rektorid <- data.frame(Nimi = rektorinimed, Synniaeg = synd, Ametialgus = ametialgus)
+
+View(rektorid)
+
+head(rektorid)
+
+```
+
+## Uute tunnuste arvutamine olemasolevate põhjal (NEW VARIABLES)
+
+```{r}
+
+rektorid$vanus_ameti_algul <- rektorid$Ametialgus - rektorid$Synniaeg # arvutab  vanuse ametisse astumise ajal
+
+rektorid$vana_vs_noor <- ifelse(rektorid$vanus_ameti_algul > 50, "vana", "noor") # kui rektor oli ametisse astudes vanem kui 50 aastat, ütleme, et ta oli vana...
+
+head(rektorid)
+
+```
+
+## Andmete import & eksport
+
+```{r}
+Factor_data <- read.csv("http://aasa.ut.ee/statistika/Factor_data.csv", sep=";", dec=",")
+head(Factor_data)
+```
+
+Kuna me tabelit praegu ei kasuta, siis eemaldame selle
+
+```{r}
+rm(Factor_data) # kuna me seda tabelit praegu ei kasuta, siis eemaldame selle.
+```
+
+Andmete R-ist välja viimine toimub nii:
+
+```{r}
+write.csv(rektorid, file="rektorid.csv", row.names = F) #viimane parameeter ütleb, et me ei taha salvestada ridade nimesid.
+```
+
+## Andmete filtreerimine tunnuste alusel
+
+```{r}
+rektoridNoored <- subset(rektorid, vana_vs_noor == "noor")
+ncol(rektoridNoored) # veergude arv (ridade arvu annab nrow())
+
+head(rektoridNoored)
+```
+## Kustutamine ja kopeerimine
+
+```{r}
+rektoridKoopia <- rektorid #loome rektorite tabelist koopia
+head(rektoridKoopia)
+
+rektorid$Nimi2 <- rektorid$Nimi # loome tunnusest koopia
+head(rektorid)
+
+# Kustutamine tähendab seda, et omistame objektile või selle liikmele väärtuse NULL:
+
+rektoridKoopia <- NULL # kustutab objekti, tegelikult jääb objekt küll alles, aga see on tühi (väärtus on 0)
+rektorid$Nimi2 <- NULL # kustutab tunnuse
+
+```
+
+## Andmete struktuuri loomine
+
+```{r}
+row.names(rektorid) <- rektorid$Nimi
+
+rektorid_t <- as.data.frame(t(rektorid))
+head(rektorid_t)
+
+```
+## Andmete teisendamine
+
+```{r}
+tartu_temp2  <- read.csv("http://aasa.ut.ee/statistika/tartu_temp2.csv", sep=";")
+
+tartu_temp2[1:3, 1:5]
+
+install.packages("reshape2")
+library(reshape2)
+
+tartu_temp2_m <- melt(tartu_temp2, id=c("aasta"))
+
+head(tartu_temp2_m)
+
+# Kuna tahame luua kuupäevade veergu, siis tuleks x-idest vabaneda
+
+tartu_temp2_m$kuu <- gsub("X","", tartu_temp2_m$variable)
+
+tartu_temp2_m$kuu <- as.numeric(tartu_temp2_m$kuu)
+
+tartu_temp2_m$date <- paste(tartu_temp2_m$aasta, tartu_temp2_m$kuu, "1", sep = "-")
+
+tartu_temp2_m$date <- as.Date(tartu_temp2_m$date)
+
+library(ggplot2)
+ggplot() +
+  theme_bw() +
+  geom_line(data=tartu_temp2_m, aes(x=date, y=value, colour=value))+
+  geom_smooth(data=tartu_temp2_m, aes(x=(date), y=value), method="lm", se=F, colour="black") +
+  scale_colour_gradient2(high="orange", low="dodgerblue", mid="grey95")
+```
+
+
+
+

@@ -6,6 +6,7 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Elise Jalonen">
 
 <title>praktikumid</title>
 <style>
@@ -89,6 +90,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Elise Jalonen </p>
+          </div>
+  </div>
     
   
     
@@ -99,13 +106,116 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="quarto" class="level2">
-<h2 class="anchored" data-anchor-id="quarto">Quarto</h2>
-<p>Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <a href="https://quarto.org" class="uri">https://quarto.org</a>.</p>
+<section id="praktikum-1" class="level2">
+<h2 class="anchored" data-anchor-id="praktikum-1">Praktikum 1</h2>
+<p>Töökataloogi kontrollimine:</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 2</code></pre>
+<pre><code>[1] "C:/Users/jalonen/Documents/Praktikumid/Github/Course/praktikumid"</code></pre>
+</div>
+</div>
+<p>Töökeskkonna liikmed:</p>
+<p>ls() # kuvatakse töökeskkonna liikmed</p>
+<p>rm(objektinimi) # eemaldatakse nimetatud objekt</p>
+<p>str(objektinimi) # vaatame andmetabeli struktuuri</p>
+</section>
+<section id="analüüsipaketid" class="level2">
+<h2 class="anchored" data-anchor-id="analüüsipaketid">Analüüsipaketid</h2>
+<p>Eespool mainitud R-i laiendused andmeanalüüsi pakettide näol tuleb esmalt paigalda ja käivitada:</p>
+<p>install.packages(“analüüsipaketi.nimi”)</p>
+<p>library(analüüsipaketi.nimi)</p>
+</section>
+<section id="tunnuste-loomine" class="level2">
+<h2 class="anchored" data-anchor-id="tunnuste-loomine">Tunnuste loomine</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rektorinimed <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Jüri Kärner"</span>, <span class="st">"Peeter Tulviste"</span>, <span class="st">"Jaak Aaviksoo"</span>, <span class="st">"Alar Karis"</span>, <span class="st">"Volli Kalm"</span>, <span class="st">"Toomas Asser"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>synd <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1940</span>, <span class="dv">1945</span>, <span class="dv">1954</span>, <span class="dv">1958</span>, <span class="dv">1953</span>, <span class="dv">1954</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>ametialgus <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1988</span>, <span class="dv">1993</span>, <span class="dv">1998</span>, <span class="dv">2007</span>, <span class="dv">2012</span>, <span class="dv">2018</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>rektorid <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Nimi =</span> rektorinimed, <span class="at">Synniaeg =</span> synd, <span class="at">Ametialgus =</span> ametialgus)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">View</span>(rektorid)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rektorid)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Nimi Synniaeg Ametialgus
+1     Jüri Kärner     1940       1988
+2 Peeter Tulviste     1945       1993
+3   Jaak Aaviksoo     1954       1998
+4      Alar Karis     1958       2007
+5      Volli Kalm     1953       2012
+6    Toomas Asser     1954       2018</code></pre>
+</div>
+</div>
+</section>
+<section id="uute-tunnuste-arvutamine-olemasolevate-põhjal-new-variables" class="level2">
+<h2 class="anchored" data-anchor-id="uute-tunnuste-arvutamine-olemasolevate-põhjal-new-variables">Uute tunnuste arvutamine olemasolevate põhjal (NEW VARIABLES)</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>rektorid<span class="sc">$</span>vanus_ameti_algul <span class="ot">&lt;-</span> rektorid<span class="sc">$</span>Ametialgus <span class="sc">-</span> rektorid<span class="sc">$</span>Synniaeg <span class="co"># arvutab  vanuse ametisse astumise ajal</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>rektorid<span class="sc">$</span>vana_vs_noor <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(rektorid<span class="sc">$</span>vanus_ameti_algul <span class="sc">&gt;</span> <span class="dv">50</span>, <span class="st">"vana"</span>, <span class="st">"noor"</span>) <span class="co"># kui rektor oli ametisse astudes vanem kui 50 aastat, ütleme, et ta oli vana...</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rektorid)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Nimi Synniaeg Ametialgus vanus_ameti_algul vana_vs_noor
+1     Jüri Kärner     1940       1988                48         noor
+2 Peeter Tulviste     1945       1993                48         noor
+3   Jaak Aaviksoo     1954       1998                44         noor
+4      Alar Karis     1958       2007                49         noor
+5      Volli Kalm     1953       2012                59         vana
+6    Toomas Asser     1954       2018                64         vana</code></pre>
+</div>
+</div>
+</section>
+<section id="andmete-import-eksport" class="level2">
+<h2 class="anchored" data-anchor-id="andmete-import-eksport">Andmete import &amp; eksport</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>Factor_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"http://aasa.ut.ee/statistika/Factor_data.csv"</span>, <span class="at">sep=</span><span class="st">";"</span>, <span class="at">dec=</span><span class="st">","</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(Factor_data)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     WORK_1    WORK_2    WORK_3   HOBBY_1   HOBBY_2    HOME_1    HOME_2
+1 105.12588 101.65870 115.06034 100.99814  95.18444 100.28127 101.66690
+2  77.04902  72.93342  77.48509  72.74369  61.56300  93.85405  95.39173
+3  86.01670  82.20648  78.88889  77.95118  91.70513  86.77338 108.07003
+4  91.42470 106.10654  95.63982  90.90057 111.46616 100.24840  86.08050
+5 113.71431  92.02872  99.07894  79.27742  98.41610 104.01265  83.27109
+6  86.60614  87.81714  67.66254  93.66221  77.99670  99.82158  97.27523
+     HOME_3  MISCEL_1  MISCEL_2
+1  85.55301 104.03460 110.27806
+2  88.60931  70.11529  72.00030
+3  93.34780  86.02111  70.68790
+4  93.82205 101.22391  82.66547
+5  69.62148  82.82023  70.02229
+6 108.62157  91.39957  79.77569</code></pre>
+</div>
+</div>
+<p>Kuna me tabelit praegu ei kasuta, siis eemaldame selle</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(Factor_data) <span class="co"># kuna me seda tabelit praegu ei kasuta, siis eemaldame selle.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Andmete R-ist välja viimine toimub nii:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(rektorid, <span class="at">file=</span><span class="st">"rektorid.csv"</span>, <span class="at">row.names =</span> F) <span class="co">#viimane parameeter ütleb, et me ei taha salvestada ridade nimesid.</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="andmete-filtreerimine-tunnuste-alusel" class="level2">
+<h2 class="anchored" data-anchor-id="andmete-filtreerimine-tunnuste-alusel">Andmete filtreerimine tunnuste alusel</h2>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>rektoridNoored <span class="ot">&lt;-</span> <span class="fu">subset</span>(rektorid, vana_vs_noor <span class="sc">==</span> <span class="st">"noor"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(rektoridNoored) <span class="co"># veergude arv (ridade arvu annab nrow())</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(rektoridNoored)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             Nimi Synniaeg Ametialgus vanus_ameti_algul vana_vs_noor
+1     Jüri Kärner     1940       1988                48         noor
+2 Peeter Tulviste     1945       1993                48         noor
+3   Jaak Aaviksoo     1954       1998                44         noor
+4      Alar Karis     1958       2007                49         noor</code></pre>
 </div>
 </div>
 </section>
